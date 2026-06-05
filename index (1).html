@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Manual para Reduzir Birras em 21 Dias</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- HOME SCREEN -->
+  <div id="s-home" class="screen active">
+    <div class="hero">
+      <div class="hero-greet">Olá, mamãe 💜</div>
+      <div class="hero-day" id="hero-day-text">Dia 4 de 21</div>
+      <div class="hero-msg">"Pequenas mudanças diárias podem transformar grandes desafios em momentos de conexão."</div>
+      <div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-fill" style="width:14%"></div></div>
+      <div class="progress-meta"><span id="prog-pct">14% concluído</span><span id="prog-days">4/21 dias</span></div>
+      <div class="streak-row" id="streak-row"></div>
+      <button class="btn-main" onclick="goToDay(currentDay)">▶ Continuar Jornada</button>
+    </div>
+
+    <div class="section-pad">
+      <div class="section-title">Próxima atividade</div>
+      <div class="card card-clickable" onclick="goToDay(currentDay)">
+        <div class="card-row">
+          <div class="card-icon blue"><i class="ti ti-calendar" aria-hidden="true"></i></div>
+          <div class="card-info">
+            <div class="card-label" id="next-title">Dia 4 — Criando uma rotina previsível</div>
+            <div class="card-sub">Fase 1 · Entender e Prevenir</div>
+          </div>
+          <i class="ti ti-chevron-right card-arrow" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-pad" style="padding-top:14px">
+      <div class="section-title">Área de aprendizado</div>
+      <div class="card card-clickable" onclick="navTo('tools')">
+        <div class="card-row">
+          <div class="card-icon purple"><i class="ti ti-brain" aria-hidden="true"></i></div>
+          <div class="card-info">
+            <div class="card-label">Entendendo as birras</div>
+            <div class="card-sub">5 cards educativos · leitura rápida</div>
+          </div>
+          <i class="ti ti-chevron-right card-arrow" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div class="card card-clickable" onclick="navTo('tools')">
+        <div class="card-row">
+          <div class="card-icon green"><i class="ti ti-tool" aria-hidden="true"></i></div>
+          <div class="card-info">
+            <div class="card-label">Caixa de ferramentas</div>
+            <div class="card-sub">6 técnicas prontas para usar</div>
+          </div>
+          <i class="ti ti-chevron-right card-arrow" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOURNEY SCREEN -->
+  <div id="s-journey" class="screen">
+    <div class="topbar">
+      <div class="topbar-title">Jornada de 21 dias</div>
+      <div class="topbar-sub" id="journey-sub">4 concluídos · 17 restantes</div>
+    </div>
+    <div class="phase-header">
+      <div class="phase-dot p1"></div>
+      <div class="phase-label">Fase 1 — Entender e Prevenir (Dias 1–7)</div>
+    </div>
+    <div id="days-p1"></div>
+    <div class="phase-header" style="margin-top:6px">
+      <div class="phase-dot p2"></div>
+      <div class="phase-label">Fase 2 — Agir Durante a Birra (Dias 8–14)</div>
+    </div>
+    <div id="days-p2"></div>
+    <div class="phase-header" style="margin-top:6px">
+      <div class="phase-dot p3"></div>
+      <div class="phase-label">Fase 3 — Transformar o Comportamento (Dias 15–21)</div>
+    </div>
+    <div id="days-p3"></div>
+  </div>
+
+  <!-- TOOLS SCREEN -->
+  <div id="s-tools" class="screen">
+    <div class="topbar">
+      <div class="topbar-title">Ferramentas</div>
+      <div class="topbar-sub">Técnicas para usar agora</div>
+    </div>
+    <div class="section-pad" style="padding-bottom:14px">
+      <div class="section-title">Entendendo as birras</div>
+      <div id="edu-cards"></div>
+    </div>
+    <div style="padding:0 20px 14px">
+      <div class="section-title">Ferramentas rápidas</div>
+      <div class="tool-grid" id="tool-grid"></div>
+    </div>
+  </div>
+
+  <!-- PROGRESS SCREEN -->
+  <div id="s-progress" class="screen">
+    <div class="topbar">
+      <div class="topbar-title">Meu progresso</div>
+      <div class="topbar-sub">Você está indo muito bem!</div>
+    </div>
+    <div class="section-pad" style="padding-bottom:14px">
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num" id="st-done">4</div><div class="stat-label">Dias concluídos</div></div>
+        <div class="stat-card"><div class="stat-num" id="st-left">17</div><div class="stat-label">Dias restantes</div></div>
+        <div class="stat-card"><div class="stat-num" id="st-pct">19%</div><div class="stat-label">Progresso total</div></div>
+        <div class="stat-card"><div class="stat-num" id="st-seq">3</div><div class="stat-label">Sequência atual</div></div>
+      </div>
+    </div>
+    <div style="padding:0 20px 14px">
+      <div class="section-title">Evolução semanal</div>
+      <div class="card">
+        <div class="week-bar">
+          <div class="week-label">Semana 1 — Entender e Prevenir (Dias 1–7)</div>
+          <div class="week-prog"><div class="week-prog-fill w1" id="wp1" style="width:57%"></div></div>
+        </div>
+        <div class="week-bar">
+          <div class="week-label">Semana 2 — Agir Durante a Birra (Dias 8–14)</div>
+          <div class="week-prog"><div class="week-prog-fill w2" id="wp2" style="width:0%"></div></div>
+        </div>
+        <div class="week-bar" style="margin-bottom:0">
+          <div class="week-label">Semana 3 — Transformar o Comportamento (Dias 15–21)</div>
+          <div class="week-prog"><div class="week-prog-fill w3" id="wp3" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS SCREEN -->
+  <div id="s-achieve" class="screen">
+    <div class="topbar">
+      <div class="topbar-title">Conquistas</div>
+      <div class="topbar-sub" id="ach-sub">2 de 6 conquistadas</div>
+    </div>
+    <div style="padding:16px 20px 0">
+      <div class="achieve-grid" id="achieve-grid"></div>
+    </div>
+  </div>
+
+  <!-- DAY DETAIL SCREEN -->
+  <div id="s-day" class="screen">
+    <div class="day-detail" id="day-detail-content"></div>
+  </div>
+
+  <!-- TOOL MODAL -->
+  <div class="tool-modal" id="tool-modal" onclick="closeToolModal(event)">
+    <div class="tool-sheet" id="tool-sheet-content"></div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="nav" aria-label="Navegação principal">
+    <button class="nav-btn active" id="nb-home" onclick="navTo('home')">
+      <i class="ti ti-home" aria-hidden="true"></i><span>Início</span>
+    </button>
+    <button class="nav-btn" id="nb-journey" onclick="navTo('journey')">
+      <i class="ti ti-calendar" aria-hidden="true"></i><span>Jornada</span>
+    </button>
+    <button class="nav-btn" id="nb-tools" onclick="navTo('tools')">
+      <i class="ti ti-brain" aria-hidden="true"></i><span>Ferramentas</span>
+    </button>
+    <button class="nav-btn" id="nb-progress" onclick="navTo('progress')">
+      <i class="ti ti-chart-bar" aria-hidden="true"></i><span>Progresso</span>
+    </button>
+    <button class="nav-btn" id="nb-achieve" onclick="navTo('achieve')">
+      <i class="ti ti-trophy" aria-hidden="true"></i><span>Conquistas</span>
+    </button>
+  </nav>
+
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
